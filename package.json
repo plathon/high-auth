@@ -1,7 +1,7 @@
 {
   "name": "High-auth",
   "version": "0.0.1",
-  "description": "ReactJS authentication library JWT-based (API or UI)",
+  "description": "ReactJS authentication component JWT-based (API or UI)",
   "scripts": {
     "start": "node server.js"
   },
