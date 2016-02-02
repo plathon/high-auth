@@ -5,15 +5,36 @@ import { signin } from '../actions'
 
 class AuthContainer extends Component {
 
+  constructor(props){
+    super(props)
+    this.state = {
+      login: "",
+      password: ""
+    }
+    this.handleChange = this.handleChange.bind(this)
+    //this.onSubmit     = this.onSubmit.bind(this)
+  }
+
+  handleChange(e){
+    var name = e.target.name
+    var value = e.target.value
+    this.setState((state) => {
+      state[ name ] = value
+      return state
+    })
+  }
+
   render(){
     return (
       <div>
         <h4>Authentication</h4>
-        <label>Login</label>
-        <input name="login" type="text"/>
-        <label>Password</label>
-        <input name="password" type="password"/>
-        <button type="submit">Enter</button>
+        <form>
+          <label>Login</label>
+          <input name="login" type="text" onChange={this.handleChange}/>
+          <label>Password</label>
+          <input name="password" type="password" onChange={this.handleChange}/>
+          <button type="submit">Enter</button>
+        </form>
       </div>
     )
   }
