@@ -12,7 +12,7 @@ class AuthContainer extends Component {
       password: ""
     }
     this.handleChange = this.handleChange.bind(this)
-    //this.onSubmit     = this.onSubmit.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   handleChange(e){
@@ -24,11 +24,16 @@ class AuthContainer extends Component {
     })
   }
 
+  handleSubmit(e){
+    e.preventDefault()
+    this.props.signin(this.state);
+  }
+
   render(){
     return (
       <div>
         <h4>Authentication</h4>
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <label>Login</label>
           <input name="login" type="text" onChange={this.handleChange}/>
           <label>Password</label>
