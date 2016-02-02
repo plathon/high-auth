@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import ChatContainer from './ChatContainer'
+import AuthContainer from './AuthContainer'
 
 export default class App extends Component {
   render() {
     return (
-      <ChatContainer />
+      <AuthContainer />
     )
   }
 }

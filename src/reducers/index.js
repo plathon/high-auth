@@ -1,4 +1,4 @@
 import { combineReducers } from 'redux'
-import { default as chat } from './chat'
+import { default as auth } from './auth'
 
-export default combineReducers({ /**/ })
+export default combineReducers({ auth })
