@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { signin, signup } from '../actions'
 
+import SignInForm from '../components/auth/SignInForm'
+
 class AuthContainer extends Component {
 
   constructor(props){
@@ -33,13 +35,8 @@ class AuthContainer extends Component {
     return (
       <div>
         <h4>Authentication</h4>
-        <form onSubmit={this.handleSubmit}>
-          <label>Login</label>
-          <input name="login" type="text" onChange={this.handleChange}/>
-          <label>Password</label>
-          <input name="password" type="password" onChange={this.handleChange}/>
-          <button type="submit">Enter</button>
-        </form>
+        <SignInForm handleSubmit={this.handleSubmit}
+                    handleChange={this.handleChange}/>
       </div>
     )
   }
