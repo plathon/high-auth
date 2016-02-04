@@ -1,22 +1,23 @@
 import { combineReducers } from 'redux'
-import { SIGNIN, SIGNUP } from '../constants/ActionTypes'
+import { AUTHENTICATE_USER,
+         REGISTER_USER } from '../constants/ActionTypes'
 
-function signin(state = {}, action) {
+const initialState = {
+  jwtToken: null,
+  user: {}
+}
+
+function auth (state = initialState, action) {
+
   switch (action.type) {
-    case SIGNIN:
+    case AUTHENTICATE_USER:
+      console.log( action );
+    case REGISTER_USER:
       console.log( action );
     default:
       return state;
   }
+
 }
 
-function signup(state = {}, action) {
-  switch (action.type) {
-    case SIGNUP:
-      console.log( action );
-    default:
-      return state;
-  }
-}
-
-export default combineReducers({ signin, signup })
+export default combineReducers({ auth })

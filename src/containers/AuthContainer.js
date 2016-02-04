@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { signin, signup } from '../actions'
+import { authenticateUser,
+         registerUser } from '../actions'
 
 import SignInForm from '../components/auth/SignInForm'
 
@@ -28,7 +29,7 @@ class AuthContainer extends Component {
 
   handleSubmit(e){
     e.preventDefault()
-    this.props.signup(this.state);
+    this.props.authenticateUser(this.state);
   }
 
   render(){
@@ -48,7 +49,7 @@ function mapStateToProps({ auth }){
 }
 
 function mapDispatchToProps(dispatch){
-  return bindActionCreators({ signin, signup }, dispatch)
+  return bindActionCreators({ authenticateUser, registerUser }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AuthContainer)
