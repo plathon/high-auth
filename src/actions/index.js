@@ -6,3 +6,10 @@ export function signin(user = {}) {
     user: user
   }
 }
+
+export function signup(user = {}) {
+  return {
+    type: types.SIGNUP,
+    user: user
+  }
+}

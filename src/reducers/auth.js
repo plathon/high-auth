@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import { SIGNIN } from '../constants/ActionTypes'
+import { SIGNIN, SIGNUP } from '../constants/ActionTypes'
 
 function signin(state = {}, action) {
   switch (action.type) {
@@ -10,4 +10,13 @@ function signin(state = {}, action) {
   }
 }
 
-export default combineReducers({ signin })
+function signup(state = {}, action) {
+  switch (action.type) {
+    case SIGNUP:
+      console.log( action );
+    default:
+      return state;
+  }
+}
+
+export default combineReducers({ signin, signup })

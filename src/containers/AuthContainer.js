@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { signin } from '../actions'
+import { signin, signup } from '../actions'
 
 class AuthContainer extends Component {
 
@@ -26,7 +26,7 @@ class AuthContainer extends Component {
 
   handleSubmit(e){
     e.preventDefault()
-    this.props.signin(this.state);
+    this.props.signup(this.state);
   }
 
   render(){
@@ -51,7 +51,7 @@ function mapStateToProps({ auth }){
 }
 
 function mapDispatchToProps(dispatch){
-  return bindActionCreators({ signin }, dispatch)
+  return bindActionCreators({ signin, signup }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AuthContainer)
