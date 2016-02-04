@@ -7,17 +7,17 @@ const initialState = {
   user: {}
 }
 
-function auth (state = initialState, action) {
+export function auth (state = initialState, action) {
 
   switch (action.type) {
     case AUTHENTICATE_USER:
-      console.log( action );
+      return state
     case REGISTER_USER:
-      console.log( action );
+      return state;
     default:
       return state;
   }
 
 }
 
-export default combineReducers({ auth })
+//export default combineReducers({ auth })
