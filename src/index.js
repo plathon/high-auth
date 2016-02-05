@@ -27,12 +27,19 @@ const middleware = process.env.NODE_ENV === 'production' ?
 const createStoreWithMiddleware = applyMiddleware(...middleware)(createStore)
 const store = createStoreWithMiddleware(reducer)
 
+function validateAuth(nextState, replaceState){
+  let state = store.getState()
+  if ( !state.default.auth.jwtToken ) {
+    replaceState(null, '/signin')
+  }
+}
+
 render(
   <div>
     <Provider store={store}>
       <Router history={history}>
         <Route path="signin" component={Auth}/>
-        <Route path="signup" component={Resgister}/>
+        <Route path="signup" component={Resgister} onEnter={validateAuth}/>
       </Router>
     </Provider>
   </div>,
