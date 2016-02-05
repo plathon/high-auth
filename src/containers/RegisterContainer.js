@@ -1,15 +1,16 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { authenticateUser } from '../actions'
+import { registerUser } from '../actions'
 
-import SignInForm from '../components/auth/SignInForm'
+import SignUpForm from '../components/auth/SignUpForm'
 
-class AuthContainer extends Component {
+class RegisterContainer extends Component {
 
   constructor(props){
     super(props)
     this.state = {
+      name: "",
       login: "",
       password: ""
     }
@@ -28,14 +29,14 @@ class AuthContainer extends Component {
 
   handleSubmit(e){
     e.preventDefault()
-    this.props.authenticateUser(this.state)
+    this.props.registerUser(this.state)
   }
 
   render(){
     return (
       <div>
         <h4>Authentication</h4>
-        <SignInForm handleSubmit={this.handleSubmit}
+        <SignUpForm handleSubmit={this.handleSubmit}
                     handleChange={this.handleChange}/>
       </div>
     )
@@ -48,7 +49,7 @@ function mapStateToProps({ auth }){
 }
 
 function mapDispatchToProps(dispatch){
-  return bindActionCreators({ authenticateUser }, dispatch)
+  return bindActionCreators({ registerUser }, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AuthContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(RegisterContainer)

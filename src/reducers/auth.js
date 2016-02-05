@@ -13,6 +13,7 @@ export function auth (state = initialState, action) {
     case AUTHENTICATE_USER:
       return state
     case REGISTER_USER:
+      console.log('registered')
       return state;
     default:
       return state;
