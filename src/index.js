@@ -9,6 +9,7 @@ import { Router, Route, IndexRoute } from 'react-router'
 import createHistory from 'history/lib/createHashHistory'
 import { syncHistory, routeReducer } from 'react-router-redux'
 
+import TopBar from './components/topBar/TopBar'
 import Auth from './containers/AuthContainer'
 import Resgister from './containers/RegisterContainer'
 
@@ -27,12 +28,13 @@ const createStoreWithMiddleware = applyMiddleware(...middleware)(createStore)
 const store = createStoreWithMiddleware(reducer)
 
 render(
-  <Provider store={store}>
-    <Router history={history}>
-      <Route path="/" component={Auth}/>
-      <Route path="signin" component={Auth}/>
-      <Route path="signup" component={Resgister}/>
-    </Router>
-  </Provider>,
+  <div>
+    <Provider store={store}>
+      <Router history={history}>
+        <Route path="signin" component={Auth}/>
+        <Route path="signup" component={Resgister}/>
+      </Router>
+    </Provider>
+  </div>,
   document.getElementById('root')
 )

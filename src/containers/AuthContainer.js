@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux'
 import { authenticateUser } from '../actions'
 
 import SignInForm from '../components/auth/SignInForm'
+import TopBar from '../components/topBar/TopBar'
 
 class AuthContainer extends Component {
 
@@ -34,6 +35,7 @@ class AuthContainer extends Component {
   render(){
     return (
       <div>
+        <TopBar />
         <h4>Authentication</h4>
         <SignInForm handleSubmit={this.handleSubmit}
                     handleChange={this.handleChange}/>
