@@ -11,10 +11,9 @@ export function auth (state = initialState, action) {
 
   switch (action.type) {
     case AUTHENTICATE_USER:
-      return state
+      return Object.assign({}, state, action.data)
     case REGISTER_USER:
-      console.log('registered')
-      return state;
+      return Object.assign({}, state, action.data)
     default:
       return state;
   }
