@@ -1,3 +1,4 @@
 //user
-export const AUTHENTICATE_USER = 'AUTHENTICATE_USER'
-export const REGISTER_USER     = 'REGISTER_USER'
+export const USER_LOGGED_IN  = 'USER_LOGGED_IN'
+export const USER_LOGGED_OUT = 'USER_LOGGED_OUT'
+export const USER_REGISTERED = 'USER_REGISTERED'

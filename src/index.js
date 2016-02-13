@@ -1,45 +1,44 @@
 import React from 'react'
 import { render } from 'react-dom'
-import { createStore, applyMiddleware, combineReducers } from 'redux'
+import { createStore, applyMiddleware, combineReducers, compose } from 'redux'
 import { Provider } from 'react-redux'
 import logger from 'redux-logger'
 import thunk from 'redux-thunk'
+import { Router, Route, IndexRoute, browserHistory } from 'react-router'
+import { syncHistory, routeReducer, routeActions } from 'react-router-redux'
+import { UserAuthWrapper } from 'redux-auth-wrapper'
 import * as reducers from './reducers'
-import { Router, Route, IndexRoute } from 'react-router'
-import createHistory from 'history/lib/createHashHistory'
-import { syncHistory, routeReducer } from 'react-router-redux'
 
-import TopBar from './components/topBar/TopBar'
+import App from './components/App'
+import Home from './components/Home'
 import Auth from './containers/AuthContainer'
 import Resgister from './containers/RegisterContainer'
 
-const history = createHistory()
+const history = browserHistory
 const synchronizedHistory = syncHistory(history)
 const reducer = combineReducers({
   ...reducers,
   routing: routeReducer
 })
 
-const middleware = process.env.NODE_ENV === 'production' ?
-  [ thunk, synchronizedHistory ] :
-  [ thunk, logger(), synchronizedHistory ]
+const enhancer = compose(
+ applyMiddleware(synchronizedHistory),
+ applyMiddleware(logger()),
+ applyMiddleware(thunk)
+)
 
-const createStoreWithMiddleware = applyMiddleware(...middleware)(createStore)
-const store = createStoreWithMiddleware(reducer)
-
-function validateAuth(nextState, replaceState){
-  let state = store.getState()
-  if ( !state.default.auth.jwtToken ) {
-    replaceState(null, '/signin')
-  }
-}
+const store = createStore(reducer, enhancer)
+synchronizedHistory.listenForReplays(store)
 
 render(
   <div>
     <Provider store={store}>
       <Router history={history}>
-        <Route path="signin" component={Auth}/>
-        <Route path="signup" component={Resgister} /*onEnter={validateAuth}*/ />
+        <Route path="/" component={App}>
+          <IndexRoute component={Home}/>
+          <Route path="signin" component={Auth}/>
+          <Route path="signup" component={Resgister}/>
+        </Route>
       </Router>
     </Provider>
   </div>,
