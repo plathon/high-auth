@@ -39,7 +39,7 @@ render(
     <Provider store={store}>
       <Router history={history}>
         <Route path="signin" component={Auth}/>
-        <Route path="signup" component={Resgister} onEnter={validateAuth}/>
+        <Route path="signup" component={Resgister} /*onEnter={validateAuth}*/ />
       </Router>
     </Provider>
   </div>,
