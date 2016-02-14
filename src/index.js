@@ -13,6 +13,7 @@ import App from './components/App'
 import Home from './components/Home'
 import Auth from './containers/AuthContainer'
 import Resgister from './containers/RegisterContainer'
+import Article from './containers/ArticleContainer'
 
 const history = browserHistory
 const synchronizedHistory = syncHistory(history)
@@ -30,6 +31,13 @@ const enhancer = compose(
 const store = createStore(reducer, enhancer)
 synchronizedHistory.listenForReplays(store)
 
+const UserIsAuthenticated = UserAuthWrapper({
+  authSelector: state => state.default.auth.user,
+  redirectAction: routeActions.replace,
+  failureRedirectPath: '/',
+  wrapperDisplayName: 'UserIsAuthenticated'
+})
+
 render(
   <div>
     <Provider store={store}>
@@ -38,6 +46,7 @@ render(
           <IndexRoute component={Home}/>
           <Route path="signin" component={Auth}/>
           <Route path="signup" component={Resgister}/>
+          <Route path="articles" component={UserIsAuthenticated(Article)}/>
         </Route>
       </Router>
     </Provider>
