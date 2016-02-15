@@ -1,4 +1,6 @@
-import { USER_REGISTERED, USER_LOGGED_IN, USER_LOGGED_OUT } from '../constants/ActionTypes'
+import { USER_START_LOGIN,
+         USER_SUCCESSFULLY_LOGGED,
+         USER_LOGIN_FAILED } from '../constants/ActionTypes'
 
 const initialState = {
   jwtToken: null,
@@ -7,12 +9,12 @@ const initialState = {
 
 export default function auth (state = initialState, { type, payload }) {
   switch (type) {
-    case USER_REGISTERED:
-      return Object.assign({}, state, payload)
-    case USER_LOGGED_IN:
-      return Object.assign({}, state, payload)
-    case USER_LOGGED_OUT:
-      return {}
+    case USER_START_LOGIN:
+      console.log('user start login')
+    case USER_SUCCESSFULLY_LOGGED:
+      console.log('user successfully logged')
+    case USER_LOGIN_FAILED:
+      console.log('user login failed')
     default:
       return state
   }

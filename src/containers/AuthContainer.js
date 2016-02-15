@@ -11,7 +11,7 @@ class AuthContainer extends Component {
     super(props)
     this.state = {
       user:{
-        login: "",
+        email: "",
         password: ""
       }
     }

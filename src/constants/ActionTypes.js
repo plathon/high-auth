@@ -1,4 +1,7 @@
 //user
-export const USER_LOGGED_IN  = 'USER_LOGGED_IN'
-export const USER_LOGGED_OUT = 'USER_LOGGED_OUT'
-export const USER_REGISTERED = 'USER_REGISTERED'
+export const USER_START_LOGIN         = 'USER_START_LOGIN'
+export const USER_SUCCESSFULLY_LOGGED = 'USER_LOGIN_FAILED'
+export const USER_LOGIN_FAILED        = 'USER_LOGIN_FAILED'
+export const USER_START_REGISTER      = 'USER_REGISTERED'
+export const USER_REGISTER_FAILED     = 'USER_REGISTERED'
+export const USER_LOGGED_OUT          = 'USER_LOGGED_OUT'
