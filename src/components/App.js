@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router'
 import { connect } from 'react-redux'
-import { routeActions } from 'react-router-redux'
 
 class App extends Component {
   render () {
@@ -19,4 +18,4 @@ class App extends Component {
   }
 }
 
-export default connect(false, routeActions)(App)
+export default connect(false, false)(App)

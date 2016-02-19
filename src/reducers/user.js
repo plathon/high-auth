@@ -1,21 +1,27 @@
+import jwt_decode from 'jwt-decode'
 import { USER_START_LOGIN,
          USER_SUCCESSFULLY_LOGGED,
          USER_LOGIN_FAILED } from '../constants/ActionTypes'
 
 const initialState = {
-  jwtToken: null,
-  user: {}
+  user: {},
+  token: ''
 }
 
-export default function auth (state = initialState, { type, payload }) {
-  switch (type) {
+export default (state = initialState, action) => {
+  switch (action.type) {
+
     case USER_START_LOGIN:
-      console.log('user start login')
-    case USER_SUCCESSFULLY_LOGGED:
-      console.log('user successfully logged')
-    case USER_LOGIN_FAILED:
-      console.log('user login failed')
-    default:
       return state
+
+    case USER_LOGIN_FAILED:
+      return state
+
+    case USER_SUCCESSFULLY_LOGGED:
+      let user = jwt_decode(action.payload)
+      return { ...state, token: action.payload, user: user }
+
+    default:
+      return state;
   }
 }

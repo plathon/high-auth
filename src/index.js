@@ -32,7 +32,7 @@ const store = createStore(reducer, enhancer)
 synchronizedHistory.listenForReplays(store)
 
 const UserIsAuthenticated = UserAuthWrapper({
-  authSelector: state => state.default.auth.user,
+  authSelector: state => state.default.user,
   redirectAction: routeActions.replace,
   failureRedirectPath: '/signin',
   wrapperDisplayName: 'UserIsAuthenticated'

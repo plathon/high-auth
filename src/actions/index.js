@@ -1,58 +1,37 @@
-import * as types from '../constants/ActionTypes'
-import request from 'superagent'
-import { BASE_URL } from '../api'
+import request from 'axios'
+import { makeUrl } from '../api'
+import { browserHistory } from 'react-router'
+import { USER_START_LOGIN,
+         USER_SUCCESSFULLY_LOGGED,
+         USER_LOGIN_FAILED } from '../constants/ActionTypes'
 
 export function authenticateUser(user = {}) {
-  return function (dispatch) {
+  return (dispatch) => {
+    dispatch(userStartLogin())
+    request.post( makeUrl('signin'), user )
+    .then((res) => {
 
-    dispatch(userStartLogin(user))
+      let token = res.data.token
+      dispatch(userSuccessfullyLogged(token))
+      browserHistory.replace('/articles')
 
-    request
-    .post(`${BASE_URL}/signin`)
-    .send(user)
-    .end((err, res) => {
-      if (err) {
-        console.log(err)
-        dispatch(userLoginFailed())
-      } else {
-        console.log(res)
-        dispatch(userSuccessfullyLogged())
-      }
+    }).catch((res) => {
+
+      let message = res.data
+      dispatch(userLoginFailed(message))
+
     })
-
   }
 }
 
-export function logoutUser(user = {}) {
-  return {
-    type: types.USER_LOGGED_OUT
-  }
+function userStartLogin () {
+  return { type: USER_START_LOGIN }
 }
 
-export function registerUser(user = {}) {
-  return {
-    type: types.USER_REGISTERED,
-    payload: {
-      jwtToken: "HuiHWEDavvVJHA36@#YFc3c3nb3C#i7dfajc",
-      user: user
-    }
-  }
+function userLoginFailed (message) {
+  return { type: USER_LOGIN_FAILED, payload: message }
 }
 
-
-function userStartLogin (user = {}) {
-  return {
-    type: types.USER_START_LOGIN,
-    user: user
-  }
-}
-
-function userLoginFailed () {
-  return {
-    type: types.USER_LOGIN_FAILED
-  }
-}
-
-function userSuccessfullyLogged () {
-  return { type: types.USER_SUCCESSFULLY_LOGGED }
+function userSuccessfullyLogged (token = null) {
+  return { type: USER_SUCCESSFULLY_LOGGED, payload: token }
 }

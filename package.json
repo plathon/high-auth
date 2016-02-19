@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/plathon/high-auth",
   "dependencies": {
+    "axios": "^0.9.1",
+    "jwt-decode": "^1.5.1",
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
     "react-redux": "^4.0.0",
@@ -24,8 +26,7 @@
     "react-router-redux": "^3.0.0",
     "redux": "^3.0.4",
     "redux-auth-wrapper": "^0.2.1",
-    "redux-thunk": "^1.0.0",
-    "superagent": "^1.7.2"
+    "redux-thunk": "^1.0.3"
   },
   "devDependencies": {
     "babel-core": "^5.6.18",
