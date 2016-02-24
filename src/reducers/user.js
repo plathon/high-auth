@@ -1,10 +1,10 @@
-import jwt_decode from 'jwt-decode'
 import { USER_START_LOGIN,
          USER_SUCCESSFULLY_LOGGED,
          USER_LOGIN_FAILED,
          USER_START_REGISTER,
          USER_REGISTERED_SUCCESSFULLY,
-         USER_REGISTER_FAILED } from '../constants/ActionTypes'
+         USER_REGISTER_FAILED,
+         USER_LOGGED_OUT } from '../constants/ActionTypes'
 
 const initialState = {
   user: {},
@@ -21,8 +21,7 @@ export default (state = initialState, action) => {
       return state
 
     case USER_SUCCESSFULLY_LOGGED:
-      let user = jwt_decode(action.payload)
-      return { ...state, token: action.payload, user: user }
+      return { ...state, token: action.payload.token, user: action.payload.user }
 
     case USER_START_REGISTER:
       return state
@@ -32,6 +31,9 @@ export default (state = initialState, action) => {
 
     case USER_REGISTER_FAILED:
       return state
+
+    case USER_LOGGED_OUT:
+      return { ...state, token: '', user: {} }
 
     default:
       return state;
