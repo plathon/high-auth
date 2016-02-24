@@ -15,7 +15,7 @@ import { USER_START_LOGIN,
 * Send auth credentials to the server
 **/
 
-export function authenticateUser (user = {}) {
+export function authenticateUser (user = {}, redirect = null) {
   return (dispatch) => {
     dispatch(userStartLogin())
     request.post( makeUrl('signin'), user )
@@ -24,7 +24,8 @@ export function authenticateUser (user = {}) {
       let token = res.data.token
       let user  = jwt_decode(token)
       dispatch(userSuccessfullyLogged(token, user))
-      browserHistory.replace('/articles')
+      if (redirect) browserHistory.replace(redirect)
+      else browserHistory.replace('/articles')
 
     }).catch((res) => {
 

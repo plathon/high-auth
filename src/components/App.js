@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { logoutUser } from '../actions'
 
+require('../styles/app.css')
+
 class App extends Component {
   render () {
     return (

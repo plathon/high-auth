@@ -30,7 +30,8 @@ class AuthContainer extends Component {
 
   handleSubmit(e){
     e.preventDefault()
-    this.props.authenticateUser(this.state.user)
+    let { query } = this.props.location
+    this.props.authenticateUser(this.state.user, query.redirect)
   }
 
   render(){
