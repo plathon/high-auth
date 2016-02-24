@@ -2,9 +2,8 @@ import React from 'react'
 import { render } from 'react-dom'
 import { createStore, applyMiddleware, combineReducers, compose } from 'redux'
 import { Provider } from 'react-redux'
-import logger from 'redux-logger'
 import thunk from 'redux-thunk'
-import { Router, Route, IndexRoute, hashHistory } from 'react-router'
+import { Router, Route, IndexRoute, browserHistory } from 'react-router'
 import { syncHistory, routeReducer, routeActions } from 'react-router-redux'
 import { UserAuthWrapper } from 'redux-auth-wrapper'
 import * as reducers from './reducers'
@@ -15,7 +14,7 @@ import Auth from './containers/AuthContainer'
 import Resgister from './containers/RegisterContainer'
 import Article from './containers/ArticleContainer'
 
-const history = hashHistory
+const history = browserHistory
 const synchronizedHistory = syncHistory(history)
 const reducer = combineReducers({
   ...reducers,
@@ -24,8 +23,8 @@ const reducer = combineReducers({
 
 const enhancer = compose(
  applyMiddleware(synchronizedHistory),
- applyMiddleware(logger()),
- applyMiddleware(thunk)
+ applyMiddleware(thunk),
+ window.devToolsExtension ? window.devToolsExtension() : f => f
 )
 
 const store = createStore(reducer, enhancer)

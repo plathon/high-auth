@@ -1,18 +1,10 @@
 var webpack = require('webpack')
 var webpackDevMiddleware = require('webpack-dev-middleware')
 var webpackHotMiddleware = require('webpack-hot-middleware')
-//get env data
-var args = require('minimist')(process.argv.slice(2));
-// Set the correct environment
-var env;
-if (args.env) {
-  env = args.env;
-} else {
-  env = 'dev';
-}
 
 var app = new (require('express'))()
 var port = 3000
+var env  = process.env.NODE_ENV
 
 var config = require('./webpack/config.' + env + '.js')
 var compiler = webpack(config)
@@ -20,7 +12,7 @@ app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: config.output
 app.use(webpackHotMiddleware(compiler))
 
 app.get("/", function(req, res) {
-  if ( env != 'prod' )
+  if ( env != 'production' )
     res.sendFile(__dirname + '/src/index.html')
   else
     res.sendFile(__dirname + '/dist/index.html')
