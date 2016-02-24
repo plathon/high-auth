@@ -1,4 +1,4 @@
 import { combineReducers } from 'redux'
-import auth from './user'
+import user from './user'
 
-export default auth
+export default user
