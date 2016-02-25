@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router'
 
 export default class SignInForm extends Component {
   render () {
@@ -14,6 +15,8 @@ export default class SignInForm extends Component {
         </div>
         <button type="submit">Enter</button>
         <br/>
+        <Link to="/resetpassword">Forgot Password</Link>
+        <br/><br/>
         <a href="#">Login com Facebook</a>
         <br/>
         <a href="#">Login com Twitter</a>

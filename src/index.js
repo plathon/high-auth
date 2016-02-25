@@ -12,6 +12,7 @@ import App from './components/App'
 import Home from './components/Home'
 import Auth from './containers/AuthContainer'
 import Resgister from './containers/RegisterContainer'
+import ResetPassword from './containers/ResetPasswordContainer'
 import Article from './containers/ArticleContainer'
 
 const history = browserHistory
@@ -45,6 +46,7 @@ render(
           <IndexRoute component={Home}/>
           <Route path="signin" component={Auth}/>
           <Route path="signup" component={Resgister}/>
+          <Route path="resetpassword" component={ResetPassword}/>
           <Route path="articles" component={UserIsAuthenticated(Article)}/>
         </Route>
       </Router>
