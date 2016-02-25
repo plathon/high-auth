@@ -1,7 +1,12 @@
 import axios from 'axios'
 
-export const request = axios.create({
-  baseURL: 'http://localhost:3001/',
-  timeout: 1000,
-  headers: {'Authorization': ''}
-});
+export function request (params = {}, auth = '') {
+
+ return axios.create({
+    baseURL: 'http://localhost:3001/',
+    params: params,
+    timeout: 1000,
+    headers: {'Authorization': `Bearer ${auth}`}
+  });
+
+}

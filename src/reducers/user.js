@@ -7,7 +7,7 @@ import { USER_START_LOGIN,
          USER_LOGGED_OUT } from '../constants/ActionTypes'
 
 const initialState = {
-  user: {},
+  data: {},
   token: ''
 }
 
@@ -21,7 +21,7 @@ export default (state = initialState, action) => {
       return state
 
     case USER_SUCCESSFULLY_LOGGED:
-      return { ...state, token: action.payload.token, user: action.payload.user }
+      return { ...state, token: action.payload.token, data: action.payload.user }
 
     case USER_START_REGISTER:
       return state
@@ -33,7 +33,7 @@ export default (state = initialState, action) => {
       return state
 
     case USER_LOGGED_OUT:
-      return { ...state, token: '', user: {} }
+      return { ...state, token: '', data: {} }
 
     default:
       return state;

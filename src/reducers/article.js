@@ -1,18 +1,18 @@
-import { START_ARTICLES_RETRIVE,
+import { START_ARTICLES_RETRIEVE,
          ARTICLES_RETRIEVED_SUCCESSFULLY,
          ARTICLES_RETRIEVE_FAILED } from '../constants/ActionTypes'
 
 const initialState = {
-  articles: {}
+  items: []
 }
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case START_ARTICLES_RETRIVE:
+    case START_ARTICLES_RETRIEVE:
       return state
 
     case ARTICLES_RETRIEVED_SUCCESSFULLY:
-      return state
+      return { items: action.payload }
 
     case ARTICLES_RETRIEVE_FAILED:
       return state

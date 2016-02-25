@@ -17,7 +17,7 @@ import { USER_START_LOGIN,
 export function authenticateUser (user = {}, redirect = null) {
   return (dispatch) => {
     dispatch(userStartLogin())
-    request.post( 'signin', user )
+    request().post( 'signin', user )
     .then((res) => {
 
       let token = res.data.token
@@ -42,7 +42,7 @@ export function authenticateUser (user = {}, redirect = null) {
 export function registerUser (user = {}) {
   return (dispatch) => {
     dispatch(userStartRegister())
-    request.post( 'signup', user )
+    request().post( 'signup', user )
     .then((res) => {
 
       dispatch(userRegisteredSuccessfully())

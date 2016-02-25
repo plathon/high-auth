@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { getArticles } from '../actions/article'
 
+import ArticleList from '../components/articles/ArticleList'
+
 class ArticleContainer extends Component {
 
   componentWillMount(){
@@ -13,14 +15,14 @@ class ArticleContainer extends Component {
     return (
       <div>
         <h1>Article</h1>
-        <p>Article content</p>
+        <ArticleList articles={this.props.articles} />
       </div>
     )
   }
 }
 
 function mapStateToProps (state) {
-  return { articles: state.default.articles }
+  return { articles: state.article.items }
 }
 
 function mapDispatchToProps (dispatch) {

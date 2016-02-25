@@ -33,7 +33,7 @@ function mapDispatchToProps(dispatch) {
 }
 
 function mapStateToProps(state) {
-  return { token: state.token }
+  return { token: state.user.token }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)
