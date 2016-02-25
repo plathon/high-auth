@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { logoutUser } from '../actions'
+import { logoutUser } from '../actions/user'
 
 class App extends Component {
 
@@ -33,7 +33,7 @@ function mapDispatchToProps(dispatch) {
 }
 
 function mapStateToProps(state) {
-  return { token: state.default.token }
+  return { token: state.token }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)
