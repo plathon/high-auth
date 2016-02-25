@@ -1,6 +1,5 @@
-import request from 'axios'
+import { request } from '../api'
 import jwt_decode from 'jwt-decode'
-import { makeUrl } from '../api'
 import { browserHistory } from 'react-router'
 
 import { USER_START_LOGIN,
@@ -18,7 +17,7 @@ import { USER_START_LOGIN,
 export function authenticateUser (user = {}, redirect = null) {
   return (dispatch) => {
     dispatch(userStartLogin())
-    request.post( makeUrl('signin'), user )
+    request.post( 'signin', user )
     .then((res) => {
 
       let token = res.data.token
@@ -43,7 +42,7 @@ export function authenticateUser (user = {}, redirect = null) {
 export function registerUser (user = {}) {
   return (dispatch) => {
     dispatch(userStartRegister())
-    request.post( makeUrl('signup'), user )
+    request.post( 'signup', user )
     .then((res) => {
 
       dispatch(userRegisteredSuccessfully())

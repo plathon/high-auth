@@ -5,7 +5,3 @@ export const request = axios.create({
   timeout: 1000,
   headers: {'Authorization': ''}
 });
-
-export function makeUrl (url) {
-  return `http://localhost:3001/${url}`
-}
